@@ -1,9 +1,11 @@
 package com.nguyen.movieapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -88,19 +90,24 @@ fun MainContent(
     Column(modifier = Modifier.padding(12.dp)) {
         LazyColumn {
             items(items = movies) {
-                Movie(movie = it)
+                Movie(movie = it) {
+                    Log.d("TAGG", "MainContent: $it")
+                }
             }
         }
     }
 }
 
 @Composable
-fun Movie(movie: String) {
+fun Movie(movie: String, onItemClick: (String) -> Unit = {}) {
     Card(
         modifier = Modifier
             .padding(4.dp)
             .fillMaxWidth()
-            .height(130.dp),
+            .height(130.dp)
+            .clickable {
+                onItemClick(movie)
+            },
         shape = RoundedCornerShape(CornerSize(16.dp)),
         elevation = CardDefaults.cardElevation(6.dp)
     ) {
