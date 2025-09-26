@@ -101,11 +101,7 @@ fun MovieRow(movie: Movie = getMovies()[0], onItemClick: (String) -> Unit = {}) 
                                 append(movie.plot)
                             }
                         }, modifier = Modifier.padding(6.dp))
-                        HorizontalDivider(
-                            modifier = Modifier,
-                            DividerDefaults.Thickness,
-                            DividerDefaults.color
-                        )
+                        HorizontalDivider(modifier = Modifier.padding(3.dp))
                         Text(
                             "Director: ${movie.director}",
                             style = MaterialTheme.typography.bodySmall
